@@ -1,0 +1,5 @@
+..  # Highlight code blocks by default
+..  highlight:: php
+
+..  # Enable line numbers by default
+..  # linenos
