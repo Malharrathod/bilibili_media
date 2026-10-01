@@ -3,6 +3,14 @@
     "type": "typo3-cms-extension",
     "description": "Bilibili Online Media support for TYPO3 Text & Media element (v12, v13, v14)",
     "license": "GPL-2.0-or-later",
+    "version": "1.0.0",
+    "keywords": [
+        "TYPO3",
+        "extension",
+        "bilibili",
+        "media",
+        "video"
+    ],
     "authors": [
         {
             "name": "Malhar Rathod",
@@ -10,6 +18,7 @@
             "role": "Developer"
         }
     ],
+    "homepage": "https://extensions.typo3.org/extension/bilibili_media",
     "require": {
         "php": "^8.1 || ^8.2 || ^8.3 || ^8.4",
         "typo3/cms-core": "^12.4 || ^13.4 || ^14.0"
