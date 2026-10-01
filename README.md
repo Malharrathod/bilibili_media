@@ -1,57 +1,60 @@
-# TYPO3 Bilibili Media Extension (`bilibili_media`)
+# TYPO3 Extension `bilibili_media`
 
-[![TYPO3 v12](https://img.shields.io/badge/TYPO3-v12.4-orange.svg)](https://typo3.org)
-[![TYPO3 v13](https://img.shields.io/badge/TYPO3-v13.4-orange.svg)](https://typo3.org)
-[![TYPO3 v14](https://img.shields.io/badge/TYPO3-v14.0-orange.svg)](https://typo3.org)
-[![License: GPL v2+](https://img.shields.io/badge/License-GPL%20v2%2B-blue.svg)](LICENSE)
+[![TYPO3 v12](https://img.shields.io/badge/TYPO3-v12.4%20LTS-orange.svg?style=flat-square&logo=typo3)](https://typo3.org)
+[![TYPO3 v13](https://img.shields.io/badge/TYPO3-v13.4%20LTS-orange.svg?style=flat-square&logo=typo3)](https://typo3.org)
+[![TYPO3 v14](https://img.shields.io/badge/TYPO3-v14-orange.svg?style=flat-square&logo=typo3)](https://typo3.org)
+[![PHP Version](https://img.shields.io/badge/PHP-8.1%20--%208.4-blue.svg?style=flat-square&logo=php)](https://php.net)
+[![License: GPL v2+](https://img.shields.io/badge/License-GPL%20v2%2B-blue.svg?style=flat-square)](LICENSE)
 
-An extension for TYPO3 CMS that enables **Bilibili video integration** within the standard **Text & Media** content element via **Online Media (Add media by URL)**.
-
-Supports **TYPO3 v12, v13, and v14**.
+Seamless, enterprise-ready **Bilibili Video Integration** for **TYPO3 CMS** (v12, v13, and v14). Enables pasting Bilibili video URLs directly into TYPO3's standard **Add media by URL** dialog for both **Text & Media** (`textmedia`) and **Media** (`media`) content elements.
 
 ---
 
-## Features
+## Key Features
 
-- **Seamless Bilibili Integration**: Paste Bilibili video URLs directly into the "Add media by URL" dialog in Text & Media (`assets`) and Media (`media`) content elements.
-- **Automatic Thumbnail Fetching**: Fetches high-resolution video cover images directly from Bilibili's API and caches them in TYPO3's FAL online media assets directory.
-- **Metadata Extraction**: Automatically extracts video title, author/uploader, width, and height.
-- **Responsive Iframe Rendering**: Generates clean, responsive HTML5 `<iframe>` embeds targeting Bilibili's player (`player.bilibili.com`).
-- **Content Security Policy (CSP)**: Ships with ready-to-use CSP rules for TYPO3 frontend and backend.
-- **Backend SVG Icon**: Includes custom Bilibili SVG mime-type icon for Filelist and Form Engine.
+- **Native Online Media Provider**: Integrates directly with TYPO3 FAL (File Abstraction Layer) as a core Online Media Provider, just like YouTube and Vimeo.
+- **Supports Text & Media and Media Elements**: Works seamlessly with `textmedia` (`assets`) and `media` (`assets` / `media`) content elements.
+- **Automatic Thumbnail & Metadata Extraction**: Automatically fetches high-resolution cover images from Bilibili's API, saving them to FAL storage, and extracts title, width, and height.
+- **Privacy & Content Security Policy (CSP)**: Ships with CSP mutations (`Configuration/ContentSecurityPolicies.php`) for TYPO3 Frontend and Backend (`*.bilibili.com`, `player.bilibili.com`, `*.hdslb.com`, `*.bilivideo.com`, `*.bilivideo.cn`).
+- **Responsive Iframe Player**: Renders clean, responsive HTML5 player iframes with optimized parameters (`high_quality=1`, `page=1`, `referrerpolicy="strict-origin-when-cross-origin"`).
+- **Backend Branding & Icons**: Custom SVG MIME type icon (`video/bilibili`) for Backend Filelist and Form Engine.
+- **TYPO3 v12, v13, & v14 Ready**: Fully compliant with PHP 8.1 - 8.4 and TYPO3 v12.4 LTS, v13.4 LTS, and v14.x.
 
 ---
 
 ## Screenshots
 
-### 1. Add Media by URL Modal (Backend)
+### 1. Backend: Add Bilibili Media by URL
 ![Add Bilibili Media by URL](Documentation/Images/backend_add_media_url.png)
 
-### 2. Imported Media Record & Metadata (Backend)
+### 2. Backend: FAL File Record with Metadata & Thumbnail
 ![Backend Media Record View](Documentation/Images/backend_media_record.png)
 
-### 3. Responsive Bilibili Video Player (Frontend)
+### 3. Frontend: Responsive Bilibili Video Player Rendering
 ![Frontend Bilibili Video Player](Documentation/Images/frontend_bilibili_player.png)
 
 ---
 
 ## Supported URL Formats
 
-The extension automatically recognizes and extracts BV/AV identifiers from the following Bilibili URL formats:
+The extension automatically processes and extracts video IDs (`BV` and legacy `AV` formats) from any of the following URLs:
 
-- Standard video URL: `https://www.bilibili.com/video/BV1xx411c7mD`
-- Video URL with parameters: `https://www.bilibili.com/video/BV1xx411c7mD?p=1`
-- Shortened URLs: `https://b23.tv/BV1xx411c7mD`
-- Bilibili Player URLs: `https://player.bilibili.com/player.html?bvid=BV1xx411c7mD`
-- Legacy AV URLs: `https://www.bilibili.com/video/av12345678`
-- Full `<iframe>` HTML embed snippets containing Bilibili video URLs.
+- **Standard Video URL**: `https://www.bilibili.com/video/BV1xx411c7mD`
+- **URL with Query Parameters**: `https://www.bilibili.com/video/BV1xx411c7mD?p=1`
+- **Shortened Share Links**: `https://b23.tv/BV1xx411c7mD`
+- **Direct Player Embed URLs**: `https://player.bilibili.com/player.html?bvid=BV1xx411c7mD`
+- **Legacy AV URLs**: `https://www.bilibili.com/video/av12345678`
+- **HTML Iframe Snippets**: `<iframe>` snippets containing valid Bilibili video URLs.
 
 ---
 
 ## Requirements
 
-- **PHP**: ^8.1 || ^8.2 || ^8.3 || ^8.4
-- **TYPO3 CMS**: ^12.4 || ^13.4 || ^14.0
+| Component | Supported Versions |
+| :--- | :--- |
+| **TYPO3 CMS** | `^12.4.0` \| `^13.4.0` \| `^14.0.0` |
+| **PHP** | `^8.1` \| `^8.2` \| `^8.3` \| `^8.4` |
+| **Dependencies** | `typo3/cms-core` |
 
 ---
 
@@ -65,39 +68,35 @@ Run the following command in your TYPO3 project root:
 composer require malhar-rathod/bilibili-media
 ```
 
-### Installation via TYPO3 Extension Manager (Legacy mode)
+### Installation via TYPO3 Extension Manager (ZIP Upload)
 
-1. Download the extension ZIP file from TER (TYPO3 Extension Repository).
-2. Open TYPO3 Backend and go to **Admin Tools > Extensions**.
-3. Upload the extension `.zip` file and click **Activate**.
-
----
-
-## Usage Guide
-
-1. Log into the **TYPO3 Backend**.
-2. Navigate to the **Page** module and edit or create a **Text & Media** content element (or any FAL media field).
-3. Switch to the **Media** tab.
-4. Click **Add media by URL**.
-5. Paste any valid Bilibili video link (e.g., `https://www.bilibili.com/video/BV1xx411c7mD`) and press **Add**.
-6. The video file will be added as a `.bilibili` FAL file record with thumbnail and title automatically populated.
-7. Save the content element and view it on the Frontend!
+1. Download the extension ZIP file from the [TYPO3 Extension Repository (TER)](https://extensions.typo3.org/).
+2. Open TYPO3 Backend and go to **Admin Tools > Extension Manager**.
+3. Select **Upload Extension** (.zip) and upload `bilibili_media`.
+4. Activate the extension.
 
 ---
 
-## Content Security Policy (CSP)
+## Configuration & Usage
 
-This extension automatically registers mutations in `Configuration/ContentSecurityPolicies.php` for `Scope::frontend()` and `Scope::backend()`:
+1. Open TYPO3 Backend and navigate to the **Page** module.
+2. Create or edit a **Text & Media** or **Media** content element.
+3. Switch to the **Media** tab and click **Add media by URL**.
+4. Paste any valid Bilibili video URL (e.g., `https://www.bilibili.com/video/BV1xx411c7mD`) and press **Add**.
+5. Save the element and preview your page on the frontend!
 
-- **FrameSrc**: `*.bilibili.com`, `player.bilibili.com`
-- **ImgSrc**: `*.hdslb.com`, `*.bilibili.com`
+> **Note for Site Packages / Bootstrap Package**: If your site uses `bootstrap-package` or custom data processors on `tt_content.media`, include the static template **Bilibili Media Support** in your `sys_template` record to ensure `bilibili` is listed in allowed media extensions.
 
 ---
 
-## Author
+## Author & Professional Services
 
-**Malhar Rathod**
+**Malhar Rathod**  
+*Senior TYPO3 Developer & Web Specialist*
+
 - **Email**: [malhar.b.rathod@gmail.com](mailto:malhar.b.rathod@gmail.com)
-- **LinkedIn**: [https://www.linkedin.com/in/malhar-b-rathod/](https://www.linkedin.com/in/malhar-b-rathod/)
-- **Package**: `malhar-rathod/bilibili-media`
-- **Extension Key**: `bilibili_media`
+- **LinkedIn**: [linkedin.com/in/malhar-b-rathod](https://www.linkedin.com/in/malhar-b-rathod/)
+- **Packagist**: [`malhar-rathod/bilibili-media`](https://packagist.org/packages/malhar-rathod/bilibili-media)
+
+> **Looking for TYPO3 Expertise?**  
+> I am available for freelance projects, custom TYPO3 extension development, agency white-label partnerships, upgrades (v11 -> v12 / v13 / v14), and API integrations. Feel free to connect with me via [LinkedIn](https://www.linkedin.com/in/malhar-b-rathod/) or email!
