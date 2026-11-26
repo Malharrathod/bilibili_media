@@ -3,7 +3,7 @@
     "type": "typo3-cms-extension",
     "description": "Bilibili Online Media support for TYPO3 Text & Media element (v12, v13, v14)",
     "license": "GPL-2.0-or-later",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "keywords": [
         "TYPO3",
         "extension",
@@ -13,8 +13,8 @@
     ],
     "authors": [
         {
-            "name": "Malhar Rathod",
-            "email": "malhar.b.rathod@gmail.com",
+            "name": "Team NorthbridgeNet",
+            "email": "info@northbridgenet.com",
             "role": "Developer"
         }
     ],
